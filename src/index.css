@@ -22,12 +22,6 @@ ul {
   margin: auto;
   padding: 0 20px;
 }
-.container1 {
-  display: flex;
-  gap: 30px;
-  margin: auto;
-  padding: 0 20px;
-}
 
 header {
   height: 70px;
@@ -46,6 +40,7 @@ header {
   text-align: center;
   color: #202142;
 }
+
 .card {
   background-color: #fff;
   color: #333;
@@ -53,6 +48,19 @@ header {
   padding: 40px 50px;
   margin: 20px 0;
   position: relative;
+}
+
+.review-card {
+  background-color: #fff;
+  color: #333;
+  border-radius: 15px;
+  padding: 40px 50px;
+  margin: 20px 0;
+  position: relative;
+}
+
+.review-text {
+  width: 250px;
 }
 
 .card.reverse {
@@ -109,7 +117,7 @@ header {
   opacity: 0;
 }
 
-[type='radio']:checked ~ label {
+[type='radio']:checked~label {
   background: #ff6a95;
   color: #fff;
 }
@@ -226,10 +234,12 @@ input:focus {
 }
 
 /* All Reviews Page Styles */
-.all-reviews-container{
+.all-reviews-container {
   padding: 10px 5%;
+
 }
-.go-to{
+
+.go-to {
   background: #ff6a95;
   border: none;
   padding: 20px 14px;
@@ -238,6 +248,22 @@ input:focus {
   font-weight: 600;
   font-size: 14px;
   cursor: pointer;
+}
+
+.container1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: auto;
+  transition: 850ms;
+}
+
+.flex-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 @media (max-width: 600px) {
@@ -257,9 +283,17 @@ input:focus {
     width: 80%;
   }
 
-  .container1{
-  flex-wrap: wrap;
-  gap: 0px;
-  margin-top: 0px;
+  .container1 {
+    flex-wrap: wrap;
+    gap: 0px;
+    margin-top: 0px;
+    transition: 850ms;
+  }
+}
+
+@media (max-width: 380px) {
+  .review-text {
+    width: 150px;
+    transition: 850ms;
   }
 }

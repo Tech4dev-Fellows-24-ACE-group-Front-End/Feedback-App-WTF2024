@@ -1,22 +1,21 @@
-import ReviewItem from "./ReviewItem"
+import ReviewItem from "./ReviewItem";
 
-function ReviewList({reviews, deleteReview}) {
+function ReviewList({ reviews, deleteReview }) {
+  if (!reviews || reviews.length === 0) {
+    return <p>No review yet!</p>;
+  }
 
-    if(!reviews || reviews.length === 0){
-        return <p>No review yet!</p>
-      }
-        
   return (
     <>
-      <div>
+      <div className="flex-item">
         {reviews.map((item) => (
-            <div key={item.id}>
-                <ReviewItem review={item} deleteReview={deleteReview} />
-            </div>
+          <div key={item.id}>
+            <ReviewItem review={item} deleteReview={deleteReview} />
+          </div>
         ))}
       </div>
     </>
-  )
+  );
 }
 
-export default ReviewList
+export default ReviewList;

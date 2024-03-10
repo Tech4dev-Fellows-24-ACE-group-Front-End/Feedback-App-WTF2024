@@ -1,16 +1,33 @@
-import React, { useState } from "react";
-import data from "../../data/reviewData"
-
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import ReviewList from "../ReviewList";
-import ReviewForm from "../ReviewForm";
-import ReviewStats from "../ReviewStats";
 import { FaHouseDamage } from "react-icons/fa";
 
 const AllReviews = () => {
+  const [review, setReview] = useState(null);
 
-   const [review, setReview] = useState(data);
+  const fetchData = async () => {
+    try {
+      let fetchedReview = localStorage.getItem("review"); // Get Review from localStorage
+      setReview(JSON.parse(fetchedReview));
+    } catch (error) {
+      console.error("Error loading data:", error);
+    }
+  };
 
+  // function to delete a review
+  const deleteReview = (id) => {
+    if (window.confirm("Are you sure, you want to delete this review?")) {
+      let filteredReview = review.filter((item) => item.id !== id);
+      console.log(filteredReview);
+      setReview(filteredReview);
+      localStorage.setItem("review", JSON.stringify(filteredReview));
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="all-reviews-container">
@@ -18,9 +35,7 @@ const AllReviews = () => {
         <button className="go-to">Go to Review Page</button>
       </Link>
       <div className="container1">
-        <ReviewList reviews={review} />
-        <ReviewList reviews={review} />
-        <ReviewList reviews={review} />
+        <ReviewList reviews={review} deleteReview={deleteReview} />
       </div>
 
       <div className="about-link">
